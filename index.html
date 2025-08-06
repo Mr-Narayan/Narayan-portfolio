@@ -14,26 +14,53 @@
         .navbar {
             background: linear-gradient(90deg, #1e3a8a, #3b82f6);
             color: white;
-            padding: 15px 0;
+            padding: 10px 0;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
+            overflow-x: auto;
+            white-space: nowrap;
+            min-width: 100%;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+        }
+        .navbar::-webkit-scrollbar {
+            height: 8px;
+        }
+        .navbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            width: 100%;
+            max-width: none;
+            padding: 0 15px;
+        }
+        .navbar h1 {
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+        .navbar ul {
+            display: flex;
+            flex-wrap: nowrap;
         }
         .navbar a {
             color: white;
-            padding: 12px 24px;
-            font-size: 1.1rem;
+            padding: 6px 12px;
+            font-size: 0.9rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            border-radius: 8px;
+            border-radius: 6px;
             position: relative;
-            overflow: hidden;
-            display: flex;
+            display: inline-flex;
             align-items: center;
         }
         .navbar a i {
             transition: transform 0.3s ease;
+            margin-right: 6px;
         }
         .navbar a:hover i {
             transform: scale(1.2);
@@ -49,7 +76,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 2px;
             background: rgba(255, 255, 255, 0.8);
             transform: scaleX(0);
             transform-origin: right;
@@ -83,16 +110,16 @@
         .navbar a[href="#career"]:hover, .navbar a[href="#career"].active {
             background: #b45309;
         }
-        .navbar a[href="#education"] {
+        .navbar a[href="#studies"] {
             background: #7c3aed;
         }
-        .navbar a[href="#education"]:hover, .navbar a[href="#education"].active {
+        .navbar a[href="#studies"]:hover, .navbar a[href="#studies"].active {
             background: #6d28d9;
         }
-        .navbar a[href="#achievements"] {
+        .navbar a[href="#awards"] {
             background: #dc2626;
         }
-        .navbar a[href="#achievements"]:hover, .navbar a[href="#achievements"].active {
+        .navbar a[href="#awards"]:hover, .navbar a[href="#awards"].active {
             background: #b91c1c;
         }
         .navbar a[href="#photos"] {
@@ -107,12 +134,36 @@
         .navbar a[href="#contact"]:hover, .navbar a[href="#contact"].active {
             background: #0e7490;
         }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .navbar ul {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+            }
+            .navbar a {
+                width: 100%;
+                justify-content: flex-start;
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+        }
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .navbar a {
+                padding: 6px 10px;
+                font-size: 0.85rem;
+            }
+        }
         .content {
             padding: 20px;
         }
         .hero-bg {
             background: linear-gradient(135deg, #1d4ed8, #06b6d4);
-            height: 150px; /* Reduced height */
+            height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -150,7 +201,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .photo-section {
-            height: 100px; /* Reduced height */
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -169,7 +220,6 @@
             background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
             opacity: 0.5;
         }
-        /* Unique colors for each section's photo-section */
         #home .photo-section {
             background: linear-gradient(135deg, #1d4ed8, #06b6d4);
         }
@@ -179,10 +229,10 @@
         #career .photo-section {
             background: linear-gradient(135deg, #d97706, #facc15);
         }
-        #education .photo-section {
+        #studies .photo-section {
             background: linear-gradient(135deg, #7c3aed, #c4b5fd);
         }
-        #achievements .photo-section {
+        #awards .photo-section {
             background: linear-gradient(135deg, #dc2626, #f87171);
         }
         #photos .photo-section {
@@ -231,15 +281,15 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
-        .gallery img {
+        .gallery-img {
             width: 100%;
-            height: auto; /* Changed to auto to display full image */
-            aspect-ratio: 4/3; /* Maintain aspect ratio */
+            height: 300px;
+            object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
-        .gallery img:hover {
+        .gallery-img:hover {
             transform: scale(1.05);
         }
         .quote {
@@ -280,7 +330,7 @@
             padding: 20px;
         }
         .large-img {
-            width: 400px; /* Increased size for prominence */
+            width: 400px;
             height: 400px;
             object-fit: cover;
         }
@@ -289,16 +339,16 @@
 <body>
     <!-- Top Navigation -->
     <nav class="navbar">
-        <div class="container mx-auto flex justify-between items-center">
+        <div class="container mx-auto">
             <h1 class="text-2xl font-bold">Narayan P. Pokhrel</h1>
-            <ul class="flex space-x-4">
-                <li><a href="#home" class="tab-link active"><i class="fas fa-home mr-2"></i> Home</a></li>
-                <li><a href="#about" class="tab-link"><i class="fas fa-user mr-2"></i> About</a></li>
-                <li><a href="#career" class="tab-link"><i class="fas fa-briefcase mr-2"></i> Career</a></li>
-                <li><a href="#education" class="tab-link"><i class="fas fa-graduation-cap mr-2"></i> Education</a></li>
-                <li><a href="#achievements" class="tab-link"><i class="fas fa-trophy mr-2"></i> Achievements</a></li>
-                <li><a href="#photos" class="tab-link"><i class="fas fa-image mr-2"></i> Photos</a></li>
-                <li><a href="#contact" class="tab-link"><i class="fas fa-envelope mr-2"></i> Contact</a></li>
+            <ul class="flex space-x-1">
+                <li><a href="#home" class="tab-link active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about" class="tab-link"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#career" class="tab-link"><i class="fas fa-briefcase"></i> Career</a></li>
+                <li><a href="#studies" class="tab-link"><i class="fas fa-graduation-cap"></i> Studies</a></li>
+                <li><a href="#awards" class="tab-link"><i class="fas fa-trophy"></i> Awards</a></li>
+                <li><a href="#photos" class="tab-link"><i class="fas fa-image"></i> Photos</a></li>
+                <li><a href="#contact" class="tab-link"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -309,14 +359,14 @@
         <section id="home" class="tab-content active">
             <div class="hero-bg">
                 <div class="text-center">
-                    <h2 class="text-2xl font-bold mb-2">Narayan Prasad Pokhrel</h2> <!-- Reduced text size -->
+                    <h2 class="text-2xl font-bold mb-2">Narayan Prasad Pokhrel</h2>
                     <p class="text-lg">Under Secretary, Ministry of Education, Science and Technology, Nepal</p>
                 </div>
             </div>
             <div class="container mx-auto py-12">
                 <div class="card">
                     <div class="flex justify-center mb-6">
-                        <img src="profile.jpg" alt="Narayan Prasad Pokhrel" class="rounded-full shadow-lg large-img">
+                        <img src="images/profile.jpg" alt="Narayan Prasad Pokhrel" class="rounded-full shadow-lg large-img" onerror="this.src='https://via.placeholder.com/400x400?text=Profile+Image'">
                     </div>
                     <div class="text-center">
                         <h3 class="text-2xl font-semibold mb-4 text-blue-800">About Narayan Prasad Pokhrel</h3>
@@ -338,12 +388,12 @@
         <!-- About Section -->
         <section id="about" class="tab-content">
             <div class="photo-section">
-                <h2 class="text-xl font-bold">About Me</h2> <!-- Reduced text size -->
+                <h2 class="text-xl font-bold">About Me</h2>
             </div>
             <div class="container mx-auto py-12">
                 <div class="card flex flex-col md:flex-row items-center">
                     <div class="md:w-1/3">
-                        <img src="about.jpg" alt="Narayan Prasad Pokhrel" class="rounded-lg shadow-lg large-img w-full">
+                        <img src="images/about.jpg" alt="Narayan Prasad Pokhrel" class="rounded-lg shadow-lg large-img w-full" onerror="this.src='https://via.placeholder.com/400x400?text=About+Image'">
                     </div>
                     <div class="md:w-2/3 md:pl-8 mt-6 md:mt-0">
                         <h3 class="text-2xl font-semibold mb-4 text-blue-800">Personal Background</h3>
@@ -351,8 +401,8 @@
                             Born on July 7th in Gulmi Madane, Nepal, Narayan Prasad Pokhrel's journey from a rural village to a key role in the Ministry of Education reflects his unwavering commitment to public service. His passion for education and societal development drives his work in shaping Nepal’s educational landscape.
                         </p>
                         <div class="quote">
-                            <p>Education is the most powerful weapon which you can use to change the world.</p>
-                            <p class="quote-author">— Nelson Mandela, shared by Narayan Prasad Pokhrel</p>
+                            <p>Education is the most powerful weapon which you can use to change yourself first then the world.</p>
+                            <p class="quote-author">— Narayan Prasad Pokhrel</p>
                         </div>
                     </div>
                 </div>
@@ -381,8 +431,8 @@
             </div>
         </section>
 
-        <!-- Education Section -->
-        <section id="education" class="tab-content">
+        <!-- Studies Section (formerly Education) -->
+        <section id="studies" class="tab-content">
             <div class="photo-section">
                 <h2 class="text-4xl font-bold">Educational Journey</h2>
             </div>
@@ -412,8 +462,8 @@
             </div>
         </section>
 
-        <!-- Achievements Section -->
-        <section id="achievements" class="tab-content">
+        <!-- Awards Section (formerly Achievements) -->
+        <section id="awards" class="tab-content">
             <div class="photo-section">
                 <h2 class="text-4xl font-bold">Achievements</h2>
             </div>
@@ -438,9 +488,9 @@
                 <div class="card">
                     <h3 class="text-2xl font-semibold mb-6 text-blue-800">Moments and Milestones</h3>
                     <div class="gallery">
-                        <img src="pp1.jpg" alt="Photo 1">
-                        <img src="pp2.jpg" alt="Photo 2">
-                        <img src="pp3.jpg" alt="Photo 3">
+                        <img src="images/pp1.jpg" alt="Photo 1" onerror="this.src='https://via.placeholder.com/400x300?text=Photo+1'" class="gallery-img">
+                        <img src="images/pp2.jpg" alt="Photo 2" onerror="this.src='https://via.placeholder.com/400x300?text=Photo+2'" class="gallery-img">
+                        <img src="images/pp3.jpg" alt="Photo 3" onerror="this.src='https://via.placeholder.com/400x300?text=Photo+3'" class="gallery-img">
                     </div>
                 </div>
             </div>
