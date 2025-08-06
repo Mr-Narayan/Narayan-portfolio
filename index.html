@@ -112,7 +112,7 @@
         }
         .hero-bg {
             background: linear-gradient(135deg, #1d4ed8, #06b6d4);
-            height: 400px;
+            height: 150px; /* Reduced height */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -150,7 +150,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .photo-section {
-            height: 300px;
+            height: 100px; /* Reduced height */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -233,8 +233,8 @@
         }
         .gallery img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: auto; /* Changed to auto to display full image */
+            aspect-ratio: 4/3; /* Maintain aspect ratio */
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
@@ -279,10 +279,10 @@
             text-align: center;
             padding: 20px;
         }
-        /* Added style for larger images in Home and About */
         .large-img {
-            width: 300px;
-            height: 300px;
+            width: 400px; /* Increased size for prominence */
+            height: 400px;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -309,14 +309,14 @@
         <section id="home" class="tab-content active">
             <div class="hero-bg">
                 <div class="text-center">
-                    <h2 class="text-4xl font-bold mb-4">Narayan Prasad Pokhrel</h2>
-                    <p class="text-xl">Under Secretary, Ministry of Education, Science and Technology, Nepal</p>
+                    <h2 class="text-2xl font-bold mb-2">Narayan Prasad Pokhrel</h2> <!-- Reduced text size -->
+                    <p class="text-lg">Under Secretary, Ministry of Education, Science and Technology, Nepal</p>
                 </div>
             </div>
             <div class="container mx-auto py-12">
                 <div class="card">
                     <div class="flex justify-center mb-6">
-                        <img src="profile.jpg" alt="Narayan Prasad Pokhrel" class="rounded-full shadow-lg large-img object-cover">
+                        <img src="profile.jpg" alt="Narayan Prasad Pokhrel" class="rounded-full shadow-lg large-img">
                     </div>
                     <div class="text-center">
                         <h3 class="text-2xl font-semibold mb-4 text-blue-800">About Narayan Prasad Pokhrel</h3>
@@ -338,7 +338,7 @@
         <!-- About Section -->
         <section id="about" class="tab-content">
             <div class="photo-section">
-                <h2 class="text-4xl font-bold">About Me</h2>
+                <h2 class="text-xl font-bold">About Me</h2> <!-- Reduced text size -->
             </div>
             <div class="container mx-auto py-12">
                 <div class="card flex flex-col md:flex-row items-center">
@@ -351,8 +351,8 @@
                             Born on July 7th in Gulmi Madane, Nepal, Narayan Prasad Pokhrel's journey from a rural village to a key role in the Ministry of Education reflects his unwavering commitment to public service. His passion for education and societal development drives his work in shaping Nepal’s educational landscape.
                         </p>
                         <div class="quote">
-                            <p>My roots in Gulmi Madane remind me daily of the transformative power of education in even the most remote communities.</p>
-                            <p class="quote-author">— Narayan Prasad Pokhrel</p>
+                            <p>Education is the most powerful weapon which you can use to change the world.</p>
+                            <p class="quote-author">— Nelson Mandela, shared by Narayan Prasad Pokhrel</p>
                         </div>
                     </div>
                 </div>
